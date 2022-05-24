@@ -7,7 +7,7 @@ module.exports = {
     themes: [
       {
         bdtoolstheme: {
-          primary: "#a991f7",
+          primary: "#f43737",
           secondary: "#f6d860",
           accent: "#37cdbe",
           neutral: "#3d4451",

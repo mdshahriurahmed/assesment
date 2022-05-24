@@ -4,13 +4,14 @@ import logo from '../../Assets/logo.png';
 import fb from '../../Assets/fb.png';
 import insta from '../../Assets/ins.png';
 import amazon from '../../Assets/a.png';
+import { Link } from 'react-router-dom';
 
 const TopHeader = () => {
     return (
         <div className='top-header flexible '>
 
             <div className='width-control-logo '>
-                <img src={logo} alt="company logo" />
+                <Link to="/"><img src={logo} alt="company logo" /></Link>
             </div>
             <div className='width-control-social'>
                 <div className='allicons '>
