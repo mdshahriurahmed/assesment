@@ -15,9 +15,9 @@ const TopHeader = () => {
             </div>
             <div className='width-control-social'>
                 <div className='allicons '>
-                    <a href="https://www.facebook.com/" target="_blank" className='icons'><img src={fb} alt="" /></a>
-                    <a href="https://www.instagram.com/" target="_blank" className='icons'><img src={insta} alt="" /></a>
-                    <a href="https://www.amazon.com/" target="_blank" className='icons'><img src={amazon} alt="" /></a>
+                    <Link to="https://www.facebook.com/" target="_blank" className='icons'><img src={fb} alt="" /></Link>
+                    <Link to="https://www.instagram.com/" target="_blank" className='icons'><img src={insta} alt="" /></Link>
+                    <Link to="https://www.amazon.com/" target="_blank" className='icons'><img src={amazon} alt="" /></Link>
                 </div>
             </div>
 

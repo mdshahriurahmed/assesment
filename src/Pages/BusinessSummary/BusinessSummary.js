@@ -12,7 +12,7 @@ const BusinessSummary = () => {
 
                     <div class="stat place-items-center">
                         <div class="stat-title">
-                            <h1 className='text-5xl text-primary mb-2'><FontAwesomeIcon icon={faUsersLine} /></h1>
+                            <h1 className='text-5xl text-primary mb-2 px-10'><FontAwesomeIcon icon={faUsersLine} /></h1>
                         </div>
                         <div class="stat-value">31K+</div>
                         <div class="stat-desc text-primary font-bold">Happy Customers</div>
@@ -20,7 +20,7 @@ const BusinessSummary = () => {
 
                     <div class="stat place-items-center">
                         <div class="stat-title">
-                            <h1 className='text-5xl text-primary mb-2'><FontAwesomeIcon icon={faCircleDollarToSlot} /></h1>
+                            <h1 className='text-5xl text-primary mb-2 px-10'><FontAwesomeIcon icon={faCircleDollarToSlot} /></h1>
                         </div>
                         <div class="stat-value ">4,200M+</div>
                         <div class="stat-desc text-primary font-bold">↗︎ Annual Revenue</div>
@@ -28,14 +28,14 @@ const BusinessSummary = () => {
 
                     <div class="stat place-items-center">
                         <div class="stat-title">
-                            <h1 className='text-5xl text-primary mb-2'><FontAwesomeIcon icon={faStar} /></h1>
+                            <h1 className='text-5xl text-primary px-10 mb-2 '><FontAwesomeIcon icon={faStar} /></h1>
                         </div>
                         <div class="stat-value">1,200</div>
                         <div class="stat-desc text-primary font-bold">Reviews</div>
                     </div>
-                    <div class="stat place-items-center">
+                    <div class="stat place-items-center ">
                         <div class="stat-title">
-                            <h1 className='text-5xl text-primary mb-2'><FontAwesomeIcon icon={faScrewdriverWrench} /></h1>
+                            <h1 className='text-5xl text-primary mb-2 px-10'><FontAwesomeIcon icon={faScrewdriverWrench} /></h1>
                         </div>
                         <div class="stat-value">50</div>
                         <div class="stat-desc text-primary font-bold">Tools</div>
