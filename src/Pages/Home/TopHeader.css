@@ -1,0 +1,60 @@
+.top-header {
+    background-image: url('../../Assets/top-01.png');
+    height: 120px;
+    padding: 10px;
+}
+
+.flexible {
+    display: flex;
+}
+
+.width-control-logo {
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+    justify-content: start;
+    width: 50%
+}
+
+.width-control-social {
+    display: flex;
+    padding-right: 20px;
+    align-items: center;
+    justify-content: end;
+    width: 50%
+}
+
+.allicons {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    justify-content: center;
+
+}
+
+.icons {
+    width: 30px
+}
+
+@media (max-width: 768px) {
+    .flexible {
+        display: block;
+    }
+
+    .width-control-logo {
+        display: flex;
+        padding-left: 0px;
+        align-items: center;
+        justify-content: center;
+        width: 100%
+    }
+
+    .width-control-social {
+        display: flex;
+        padding-right: 0px;
+        margin-top: 5px;
+        align-items: center;
+        justify-content: center;
+        width: 100%
+    }
+}
