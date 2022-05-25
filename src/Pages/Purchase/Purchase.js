@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
-import PurchaseModal from '../PurchaseModal/PurchaseModal';
+
 
 const Purchase = () => {
     const { id } = useParams();
@@ -47,6 +47,7 @@ const Purchase = () => {
             toolId: _id,
             img: img,
             toolName: name,
+            quantity: quantity,
             totalCost: cost,
             clientName: userName,
             clientEmail: userEmail,
