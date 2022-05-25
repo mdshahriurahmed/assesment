@@ -8,6 +8,7 @@ import Loading from '../Loading/Loading'
 
 
 import 'react-toastify/dist/ReactToastify.css';
+import useToken from '../Hooks/useToken';
 // import useToken from '../../hooks/useToken';
 
 const Login = () => {
@@ -32,6 +33,8 @@ const Login = () => {
         signInWithEmailAndPassword(data.email, data.password);
     }
 
+    const [token] = useToken(user || gUser);
+
     let signInError;
     const navigate = useNavigate();
     const location = useLocation();
@@ -39,11 +42,11 @@ const Login = () => {
 
 
     useEffect(() => {
-        if (user || gUser) {
+        if (token) {
             navigate(from, { replace: true });
 
         }
-    }, [user, gUser, from, navigate])
+    }, [user, gUser, from, navigate, token])
 
 
     if (error || gerror) {
