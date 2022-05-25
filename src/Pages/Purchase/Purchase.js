@@ -1,39 +1,87 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
 
 const Purchase = () => {
-    const { _id } = useParams();
+    const { id } = useParams();
+    const [tool, setTool] = useState({});
+    useEffect(() => {
+        const url = `http://localhost:5000/purchase/${id}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setTool(data))
+    }, [id])
+    const { _id, img, name, available_quantity, min_order_quantity, price, description } = tool;
+
+    const [user, loading, error] = useAuthState(auth);
+    if (loading) {
+        <Loading></Loading>
+    }
+
+    const [warn, setWarn] = useState('');
+
+    const handlePurchase = event => {
+        event.preventDefault();
+        const userName = user.displayName;
+        const userEmail = user.email;
+        const phone = event.target.phone.value;
+        const quantity = event.target.quantity.value;
+        const location = event.target.location.value;
+        const paid = false;
+
+        if (quantity > available_quantity) {
+            setWarn(`Quantity can not be more than ${available_quantity}`);
+            return;
+        }
+        if (quantity < min_order_quantity) {
+            setWarn(`Quantity can not be less than ${min_order_quantity}`);
+            return;
+        }
+
+        console.log(userName, userEmail);
+
+
+
+    }
+
     return (
         <div>
             <h1 className='text-5xl text-center text-white my-8'>Purchase</h1>
-            <div class="hero min-h-screen bg-base-200">
-                <div className='grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-10 px-10'>
-                    <div>
-                        <div class="card lg:max-w-lg bg-base-100 shadow-xl">
-                            <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-                            <div class="card-body">
-                                <h2 class="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div class="card-actions justify-end">
-                                    <button class="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="card lg:max-w-lg bg-base-100 shadow-xl">
-                            <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-                            <div class="card-body">
-                                <h2 class="card-title">Shoes!</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div class="card-actions justify-end">
-                                    <button class="btn btn-primary">Buy Now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div className='grid grid-cols-1 lg-w-1/2 md-w-1/2 lg:grid-cols-2 md:grid2cols-2 px-10 justify-center gap-10'>
+                <div className=' bg-white rounded-lg p-10'>
+                    <div className='flex justify-center'><img src={img} alt="" /></div>
+
+                    <h2 className='text-3xl text-primary font-bold'>Name: {name}</h2>
+                    <hr className='my-2' />
+                    <h3 className='text-xl'><span className='font-bold'>USD$ {price}</span> <span className='text-accent'>/ Piece</span></h3>
+                    <hr className='my-2' />
+                    <h3 className='text-accent '>Available Qty: {available_quantity} Piece</h3>
+                    <hr className='my-2' />
+                    <h3 className='text-accent '>Min Order Qty: {min_order_quantity} Piece</h3>
+                    <hr className='my-2' />
+                    <p>{description}</p>
+                </div>
+                <div className=' bg-accent rounded-lg p-10'>
+                    <h1 className='text-center text-primary text-5xl font-serif mb-8'>Order Info</h1>
+                    <form onSubmit={handlePurchase}>
+                        <input name="name" disabled type="text" class="input caret-secondary bg-neutral  drop-shadow-lg  w-full text-xl" value={user.displayName} />
+                        <input name="email" type="text" disabled class="input mt-5  bg-neutral  text-xl drop-shadow-lg  w-full" value={user.email} />
+
+                        <input name="phone" type="text" placeholder="Enter Phone Number" class="input mt-5  drop-shadow-lg bg-neutral text-xl   w-full" required />
+                        <input name="location" type="text" placeholder="Enter Shipping Location" class="input mt-5  drop-shadow-lg bg-neutral text-xl   w-full" required />
+
+
+
+                        <input name="quantity" type="number" placeholder="Enter Quantity" required class="input mt-5 drop-shadow-lg  bg-neutral text-xl  w-full" />
+                        <p className='text-secondary mt-2 ml-1 text-start'>{warn}</p>
+                        <input type="submit" className='bg-secondary px-5 mt-5 py-2 rounded-lg w-full font-bold drop-shadow-lg cursor-pointer hover:bg-yellow-500' value="Add to Order List" />
+                    </form>
+
                 </div>
             </div>
+
         </div>
     );
 };
