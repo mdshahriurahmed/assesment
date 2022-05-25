@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
+import PurchaseModal from '../PurchaseModal/PurchaseModal';
 
 const Purchase = () => {
     const { id } = useParams();
@@ -30,6 +32,7 @@ const Purchase = () => {
         const quantity = event.target.quantity.value;
         const location = event.target.location.value;
         const paid = false;
+        const cost = quantity * price;
 
         if (quantity > available_quantity) {
             setWarn(`Quantity can not be more than ${available_quantity}`);
@@ -40,7 +43,30 @@ const Purchase = () => {
             return;
         }
 
-        console.log(userName, userEmail);
+        const purchaseData = {
+            toolId: _id,
+            img: img,
+            toolName: name,
+            totalCost: cost,
+            clientName: userName,
+            clientEmail: userEmail,
+            phone: phone,
+            location: location,
+            paid: paid
+
+        }
+
+        fetch('http://localhost:5000/purchasing', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(purchaseData)
+        })
+            .then(res => res.json)
+            .then(data => {
+                alert('Check your order page and confirm the order by completing payment.')
+            })
 
 
 
@@ -76,7 +102,8 @@ const Purchase = () => {
 
                         <input name="quantity" type="number" placeholder="Enter Quantity" required class="input mt-5 drop-shadow-lg  bg-neutral text-xl  w-full" />
                         <p className='text-secondary mt-2 ml-1 text-start'>{warn}</p>
-                        <input type="submit" className='bg-secondary px-5 mt-5 py-2 rounded-lg w-full font-bold drop-shadow-lg cursor-pointer hover:bg-yellow-500' value="Add to Order List" />
+                        <input type="submit" for="my-modal-6" className='bg-secondary px-5 mt-5 py-2 rounded-lg w-full font-bold drop-shadow-lg cursor-pointer hover:bg-yellow-500' value="Add to Order List" />
+
                     </form>
 
                 </div>
