@@ -5,29 +5,23 @@ import s3 from '../../Assets/s3.webp';
 
 const Banner = () => {
     return (
-        <div>
-            <div class="carousel w-full">
-                <div id="slide1" class="carousel-item relative w-full">
+        <div >
+            <div class="carousel w-full ">
+                <div id="item1" class="carousel-item w-full">
                     <img src={s2} class="w-full" />
-                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="#slide3" class="btn btn-circle">❮</a>
-                        <a href="#slide2" class="btn btn-circle">❯</a>
-                    </div>
                 </div>
-                <div id="slide2" class="carousel-item relative w-full">
+                <div id="item2" class="carousel-item w-full">
                     <img src={s1} class="w-full" />
-                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="#slide1" class="btn btn-circle">❮</a>
-                        <a href="#slide3" class="btn btn-circle">❯</a>
-                    </div>
                 </div>
-                <div id="slide3" class="carousel-item relative w-full">
+                <div id="item3" class="carousel-item w-full">
                     <img src={s3} class="w-full" />
-                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="#slide2" class="btn btn-circle">❮</a>
-                        <a href="#slide1" class="btn btn-circle">❯</a>
-                    </div>
                 </div>
+
+            </div>
+            <div class="flex justify-center w-full py-2 gap-2">
+                <a href="#item1" class="btn btn-xs btn-primary">1</a>
+                <a href="#item2" class="btn btn-xs btn-primary">2</a>
+                <a href="#item3" class="btn btn-xs btn-primary">3</a>
 
             </div>
         </div>

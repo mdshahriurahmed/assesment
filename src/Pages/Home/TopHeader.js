@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const TopHeader = () => {
     return (
-        <div className='top-header flexible '>
+        <div className='top-header flexible   '>
 
             <div className='width-control-logo '>
                 <Link to="/"><img src={logo} alt="company logo" /></Link>

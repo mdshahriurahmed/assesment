@@ -4,7 +4,7 @@ import TopHeader from './TopHeader';
 
 const Header = () => {
     return (
-        <div className='sticky top-0'>
+        <div >
             <TopHeader></TopHeader>
             <Navbar></Navbar>
         </div>

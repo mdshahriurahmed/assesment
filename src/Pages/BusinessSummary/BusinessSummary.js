@@ -2,8 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import React from 'react';
 import { faUsersLine, faCircleDollarToSlot, faStar, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
+import useTools from '../Hooks/useTools';
 
 const BusinessSummary = () => {
+    const [tools] = useTools();
     return (
         <div >
             <h1 className='text-center text-4xl mt-12 mb-8 text-white'>Business Summary</h1>
@@ -37,7 +39,7 @@ const BusinessSummary = () => {
                         <div class="stat-title">
                             <h1 className='text-5xl text-primary mb-2 px-10'><FontAwesomeIcon icon={faScrewdriverWrench} /></h1>
                         </div>
-                        <div class="stat-value">50</div>
+                        <div class="stat-value">{tools.length}</div>
                         <div class="stat-desc text-primary font-bold">Tools</div>
                     </div>
 
