@@ -3,10 +3,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
+import CancelModal from './CancelModal';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
-    const { data: orders, isLoading } = useQuery('orders', () => fetch(`http://localhost:5000/myorders?userEmail=${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:5000/myorders?userEmail=${user.email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -19,9 +20,9 @@ const MyOrders = () => {
 
     return (
         <div>
-            <h1 className='text-4xl text-white text-center font-medium mb-10'>My Orders</h1>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <h1 className='text-4xl text-white text-center font-medium mb-10 '>My Orders</h1>
+            <div class="overflow-x-auto overflow-y-auto pb-10">
+                <table class="table w-full pb-10">
 
                     <thead>
                         <tr>
@@ -48,7 +49,12 @@ const MyOrders = () => {
                                     <td>{order.toolName}</td>
                                     <td>{order.totalCost}</td>
                                     <td>Blue</td>
-                                    <td></td>
+                                    <td><label for="cancel-modal" class="btn btn-xs btn-primary text-white">Cancel Order</label></td>
+
+                                    <CancelModal key={order._id}
+                                        _id={order._id}
+                                        refetch={refetch}
+                                    ></CancelModal>
                                 </tr>
                             )
                         }
