@@ -88,7 +88,7 @@ const Purchase = () => {
                     price: price,
                     description: description
                 };
-                console.log(updatedTool);
+
                 fetch(`http://localhost:5000/newtool/${id}`, {
                     method: 'PUT',
                     headers: {
