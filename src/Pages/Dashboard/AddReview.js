@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
@@ -8,6 +9,7 @@ const AddReview = () => {
     const [error, setError] = useState('');
     const [error2, setError2] = useState('');
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
 
     const handleSubmit = event => {
@@ -38,7 +40,7 @@ const AddReview = () => {
             .then(res => res.json)
             .then(data => {
                 if (data) {
-                    console.log(data);
+                    navigate('/dashboard/myorders')
                     toast.success('Thank For your Rating');
                 }
             })
