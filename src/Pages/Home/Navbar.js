@@ -4,6 +4,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
+import photo from '../../Assets/default img.png'
+import { useQuery } from 'react-query';
 
 const Navbar = () => {
     const [user, loading, error] = useAuthState(auth);
@@ -12,7 +14,19 @@ const Navbar = () => {
         localStorage.removeItem('accessToken');
     };
 
+
+
     if (loading) {
+        <Loading></Loading>
+    }
+
+    const { data: myprofile, isLoading, refetch } = useQuery('myprofile', () => fetch(`http://localhost:5000/myprofile?userEmail=${user.email}`, {
+        method: 'GET',
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => res.json()))
+    if (isLoading) {
         <Loading></Loading>
     }
 
@@ -35,7 +49,12 @@ const Navbar = () => {
         {
             user && <li><Link to='/'><div class="avatar online">
                 <div class="w-12 rounded-full">
-                    <img src={user.photoURL} alt="" />
+                    {
+                        myprofile.img ?
+                            <img src={myprofile.img} alt="" />
+                            :
+                            <img src={photo} alt="" />
+                    }
                 </div>
             </div></Link></li>
 

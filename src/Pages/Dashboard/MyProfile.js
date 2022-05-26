@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
+import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './MyProfile.css'
+import pimage from '../../Assets/default img.png'
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
     const email = user.email;
-    const navigate = useNavigate();
-    const [add, setAdd] = useState('');
+
+
 
     const { data: myprofile, isLoading, refetch } = useQuery('myprofile', () => fetch(`http://localhost:5000/myprofile?userEmail=${email}`, {
         method: 'GET',
@@ -18,22 +21,25 @@ const MyProfile = () => {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()))
+
+
+
     const handleSubmit = event => {
         event.preventDefault();
         const address = event.target.address.value;
         const education = event.target.edu.value;
         const linkedin = event.target.linkedin.value;
+        const image = event.target.image.value;
 
-        if (!address) {
-            setAdd(myprofile.address)
-        }
+
 
         const updatedInfo = {
             email: email,
             displayName: user.displayName,
             address: address ? address : myprofile.address,
             education: education ? education : myprofile.education,
-            linkedin: linkedin ? linkedin : myprofile.linkedin
+            linkedin: linkedin ? linkedin : myprofile.linkedin,
+            img: image
 
         }
 
@@ -61,10 +67,26 @@ const MyProfile = () => {
     }
 
     return (
-        <div className='px-40'>
+        <div className='px-40 mb-40'>
             <h1 className='text-5xl text-white text-center mb-5'>Profile</h1>
             <div>
                 <div className='w-96 p-5 bg-white rounded-lg drop-shadow-lg'>
+                    <div className='flex justify-center'>
+
+
+                        <div class="avatar my-5">
+                            <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                {
+                                    myprofile.img ?
+                                        <img src={myprofile.img} />
+                                        :
+                                        <img src={pimage} />
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+
                     <h1 className='text-xl'>Email: {email}</h1>
                     <hr className='my-3' />
                     <h1 className='text-xl'>Name: {user.displayName}</h1>
@@ -96,6 +118,16 @@ const MyProfile = () => {
                 <div className='w-96 p-5 bg-white rounded-lg drop-shadow-lg mt-6'>
                     <h1 className='text-2xl text-center'>Add/Update Info</h1>
                     <form action="" onSubmit={handleSubmit}>
+                        {/* <div className='flex justify-center text-center'>
+                            <label for="inputTag">
+                                <br />
+                                <div className='icon'>
+                                    <h1 className='text-5xl mb-1 text-secondary '><FontAwesomeIcon icon={faCamera} /></h1>
+                                </div>
+                                <input id="inputTag" name='image' type="file" />
+                            </label>
+                        </div> */}
+                        <input name='image' type="text" placeholder="Enter profile image link" class="input input-bordered shadow-lg input-secondary w-full  mt-5" />
                         <input name='edu' type="text" placeholder="Enter education" class="input input-bordered shadow-lg input-secondary w-full  mt-5" />
                         <input name='address' type="text" placeholder="Enter address" class="input input-bordered shadow-lg input-secondary w-full  mt-5" />
                         <input name='linkedin' type="text" placeholder="Enter linkedin address" class="input shadow-lg input-bordered input-secondary w-full  mt-5" />
