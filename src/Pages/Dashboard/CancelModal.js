@@ -26,8 +26,8 @@ const CancelModal = ({ _id, refetch }) => {
             <input type="checkbox" id="cancel-modal" class="modal-toggle" />
             <div class="modal modal-bottom sm:modal-middle">
                 <div class="modal-box">
-                    <h3 class="font-bold text-lg">Congratulations random Interner user!</h3>
-                    <p class="py-4">{_id}</p>
+                    <h3 class="font-bold text-lg">Are you sure, you want to cancel the order!</h3>
+                    <p class="py-4">Order Id: {_id}</p>
                     <div class="modal-action flex justify-between">
                         <label for="cancel-modal" class="btn btn-sm btn-secondary">Go Back</label>
                         <label onClick={() => handleDelete(_id)} for="cancel-modal" class="btn btn-sm btn-primary">Confirm Cancellation!</label>

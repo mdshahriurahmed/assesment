@@ -7,7 +7,7 @@ import amazon from '../../Assets/a.png';
 
 const Footer = () => {
     return (
-        <footer class="footer footer-center p-10 mt-16 bg-accent text-base-content rounded">
+        <footer class="footer footer-center p-10  bg-accent text-base-content rounded">
             <div class="grid grid-flow-col gap-4 text-white ">
                 <Link to='/' class="link link-hover">Home</Link>
                 <Link to='/blogs' class="link link-hover">Blogs</Link>
