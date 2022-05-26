@@ -1,24 +1,97 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import Loading from '../Loading/Loading';
 
-const CancelModal = ({ _id, refetch }) => {
+const CancelModal = ({ order, refetch, isLoading }) => {
 
+    const [tool, setTool] = useState({});
+    const { _id } = order;
+    console.log(order);
     const handleDelete = _id => {
-        fetch(`http://localhost:5000/myorder/${_id}`, {
-            method: 'DELETE',
+
+        const url = `http://localhost:5000/myorder2/${_id}`;
+        const pid = _id;
+        fetch(url, {
+            method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())
             .then(data => {
-                if (data.deletedCount) {
-                    toast.success('Order Cancelled Successfully');
-                    refetch();
+                const q = parseInt(data.quantity);
+                console.log(data);
+                const tid = data.toolId;
 
 
-                }
+
+
+                //--------
+                const url1 = `http://localhost:5000/purchase/${data.toolId}`;
+
+                fetch(url1, {
+                    method: 'GET',
+                    headers: {
+                        'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+
+
+
+                        const newquantity = parseInt(data.available_quantity) + q;
+
+                        const updatedTool = {
+                            img: data.img,
+                            name: data.name,
+                            available_quantity: newquantity,
+                            min_order_quantity: data.min_order_quantity,
+                            price: data.price,
+                            description: data.description
+                        };
+
+                        fetch(`http://localhost:5000/newtool/${tid}`, {
+                            method: 'PUT',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(updatedTool)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                //delete
+                                fetch(`http://localhost:5000/myorder/${_id}`, {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                                    }
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        console.log(data);
+                                        if (data.deletedCount) {
+
+                                            toast.success('Order Cancelled Successfully');
+                                            refetch();
+
+
+
+
+                                        }
+                                    })
+                                //delete
+
+                            })
+
+
+
+                    })
+                //-----
+
             })
+
+
 
     }
 

@@ -8,6 +8,7 @@ import CancelModal from './CancelModal';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
+    const [order, setOrder] = useState('');
     const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:5000/myorders?userEmail=${user.email}`, {
         method: 'GET',
         headers: {
@@ -22,7 +23,7 @@ const MyOrders = () => {
 
 
     return (
-        <div>
+        <div className='mb-40'>
             <h1 className='text-4xl text-white text-center font-medium mb-10 '>My Orders</h1>
             <div class="overflow-x-auto overflow-y-auto pb-10">
                 <table class="table w-full pb-10">
@@ -41,6 +42,7 @@ const MyOrders = () => {
                     <tbody>
                         {
                             orders.map(order =>
+
                                 <tr>
                                     <td>{orders.indexOf(order) + 1}</td>
                                     <td><div class="avatar">
@@ -48,8 +50,9 @@ const MyOrders = () => {
                                             <img src={order.img} alt="Tailwind-CSS-Avatar-component" />
                                         </div>
                                     </div></td>
-                                    <td>{order.quantity}</td>
                                     <td>{order.toolName}</td>
+                                    <td>{order.quantity}</td>
+
                                     <td>{order.totalCost}</td>
                                     <td>{order.paid ?
                                         <>
@@ -69,17 +72,28 @@ const MyOrders = () => {
                                             <p>{order.t_id}</p>
                                         </>
                                         :
-                                        <label for="cancel-modal" class="btn btn-xs btn-primary text-white">Cancel Order</label>}</td>
+                                        <>
+                                            <label onClick={() => setOrder(order)} for="cancel-modal" class="btn btn-xs btn-primary text-white">Cancel Order</label>
 
-                                    <CancelModal key={order._id}
-                                        _id={order._id}
-                                        refetch={refetch}
-                                    ></CancelModal>
+                                        </>
+                                    }
+
+
+                                    </td>
+
+
                                 </tr>
                             )
                         }
 
-
+                        {
+                            order && <CancelModal
+                                key={order._id}
+                                order={order}
+                                refetch={refetch}
+                            >
+                            </CancelModal>
+                        }
 
 
                     </tbody>

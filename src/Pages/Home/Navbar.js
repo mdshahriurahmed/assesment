@@ -6,6 +6,9 @@ import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 import photo from '../../Assets/default img.png'
 import { useQuery } from 'react-query';
+import useProfile from '../Hooks/useProfile';
+
+
 
 const Navbar = () => {
     const [user, loading, error] = useAuthState(auth);
@@ -15,20 +18,13 @@ const Navbar = () => {
     };
 
 
-
     if (loading) {
         <Loading></Loading>
     }
 
-    const { data: myprofile, isLoading, refetch } = useQuery('myprofile', () => fetch(`http://localhost:5000/myprofile?userEmail=${user.email}`, {
-        method: 'GET',
-        headers: {
-            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-        }
-    }).then(res => res.json()))
-    if (isLoading) {
-        <Loading></Loading>
-    }
+
+    const [img] = useProfile(user);
+
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
@@ -50,8 +46,8 @@ const Navbar = () => {
             user && <li><Link to='/'><div class="avatar online">
                 <div class="w-12 rounded-full">
                     {
-                        myprofile.img ?
-                            <img src={myprofile.img} alt="" />
+                        img ?
+                            <img src={img} alt="" />
                             :
                             <img src={photo} alt="" />
                     }
