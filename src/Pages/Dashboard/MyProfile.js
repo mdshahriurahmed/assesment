@@ -31,9 +31,9 @@ const MyProfile = () => {
         const updatedInfo = {
             email: email,
             displayName: user.displayName,
-            address: address,
-            education: education,
-            linkedin: linkedin
+            address: address ? address : myprofile.address,
+            education: education ? education : myprofile.education,
+            linkedin: linkedin ? linkedin : myprofile.linkedin
 
         }
 
