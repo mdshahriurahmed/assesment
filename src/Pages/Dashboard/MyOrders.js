@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
 import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
 
 const MyOrders = () => {
-    const [orders, setOrders] = useState([]);
     const [user] = useAuthState(auth);
-    useEffect(() => {
-        if (user) {
-            fetch(`http://localhost:5000/myorders?userEmail=${user.email}`, {
-                method: 'GET',
-                headers: {
-                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-                }
-            })
-                .then(res => res.json())
-                .then(data => setOrders(data));
+    const { data: orders, isLoading } = useQuery('orders', () => fetch(`http://localhost:5000/myorders?userEmail=${user.email}`, {
+        method: 'GET',
+        headers: {
+            'authorization': `Bearer ${localStorage.getItem('accessToken')}`
         }
-    }, [user])
+    }).then(res => res.json()))
 
-    console.log(user.email, orders);
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
     return (
         <div>
             <h1 className='text-4xl text-white text-center font-medium mb-10'>My Orders</h1>
