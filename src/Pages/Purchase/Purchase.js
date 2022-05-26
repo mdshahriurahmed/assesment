@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 
 
 const Purchase = () => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [tool, setTool] = useState({});
     useEffect(() => {
@@ -71,7 +72,31 @@ const Purchase = () => {
         })
             .then(res => res.json)
             .then(data => {
-                alert('Check your order page and confirm the order by completing payment.')
+
+                alert('Check your order page and confirm the order by completing payment.');
+                const newavailablequantity = available_quantity - quantity;
+
+                const updatedTool = {
+                    img: img,
+                    name: name,
+                    available_quantity: newavailablequantity,
+                    min_order_quantity: min_order_quantity,
+                    price: price,
+                    description: description
+                };
+                console.log(updatedTool);
+                fetch(`http://localhost:5000/newtool/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedTool)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        navigate('/dashboard/myorders');
+
+                    })
             })
 
 
@@ -79,7 +104,7 @@ const Purchase = () => {
     }
 
     return (
-        <div>
+        <div className='pb-16'>
             <h1 className='text-5xl text-center text-white my-8'>Purchase</h1>
             <div className='grid grid-cols-1 lg-w-1/2 md-w-1/2 lg:grid-cols-2 md:grid2cols-2 px-10 justify-center gap-10'>
                 <div className=' bg-white rounded-lg p-10'>
