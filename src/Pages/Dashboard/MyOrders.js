@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 import CancelModal from './CancelModal';
@@ -17,6 +18,8 @@ const MyOrders = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
+
+
 
     return (
         <div>
@@ -48,7 +51,11 @@ const MyOrders = () => {
                                     <td>{order.quantity}</td>
                                     <td>{order.toolName}</td>
                                     <td>{order.totalCost}</td>
-                                    <td>Blue</td>
+                                    <td>{order.paid ?
+                                        <h1> {order.t_id}</h1>
+                                        :
+                                        <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-success btn-xs px-5 text-white'>Pay</button></Link>
+                                    }</td>
                                     <td><label for="cancel-modal" class="btn btn-xs btn-primary text-white">Cancel Order</label></td>
 
                                     <CancelModal key={order._id}
