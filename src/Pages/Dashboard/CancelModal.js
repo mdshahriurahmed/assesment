@@ -15,6 +15,8 @@ const CancelModal = ({ _id, refetch }) => {
                 if (data.deletedCount) {
                     toast.success('Order Cancelled Successfully');
                     refetch();
+
+
                 }
             })
 

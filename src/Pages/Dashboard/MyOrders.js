@@ -52,11 +52,24 @@ const MyOrders = () => {
                                     <td>{order.toolName}</td>
                                     <td>{order.totalCost}</td>
                                     <td>{order.paid ?
-                                        <h1> {order.t_id}</h1>
+                                        <>
+                                            {
+                                                order.approved ?
+                                                    <h1 className='text-success'> Approved</h1>
+                                                    :
+                                                    <h1 className='text-primary'> Pending..</h1>
+                                            }
+                                        </>
                                         :
                                         <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-success btn-xs px-5 text-white'>Pay</button></Link>
                                     }</td>
-                                    <td><label for="cancel-modal" class="btn btn-xs btn-primary text-white">Cancel Order</label></td>
+                                    <td>{order.paid ?
+                                        <>
+                                            <h1>Transaction ID</h1>
+                                            <p>{order.t_id}</p>
+                                        </>
+                                        :
+                                        <label for="cancel-modal" class="btn btn-xs btn-primary text-white">Cancel Order</label>}</td>
 
                                     <CancelModal key={order._id}
                                         _id={order._id}

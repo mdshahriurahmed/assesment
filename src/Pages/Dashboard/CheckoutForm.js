@@ -1,15 +1,18 @@
 import { async } from '@firebase/util';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ order }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [carderror, setCarderror] = useState('');
     const [success, setSuccess] = useState('');
-
+    const [transactionId, setTransactionId] = useState('');
+    const navigate = useNavigate();
     const [clientSecret, setClientSecret] = useState('');
-    const { totalCost, clientEmail, clientName } = order;
+    const { _id: id, totalCost, clientEmail, clientName, toolId,
+        img, toolName, quantity, phone, location, paid, approved } = order;
     const price = totalCost;
     useEffect(() => {
         fetch('http://localhost:5000/create-payment-intent', {
@@ -67,7 +70,39 @@ const CheckoutForm = ({ order }) => {
         }
         else {
             setCarderror('');
+            setTransactionId(paymentIntent.id);
             setSuccess('Your Payment is Completed');
+
+            const updatedPurchase = {
+                totalCost: totalCost,
+                clientEmail: clientEmail,
+                clientName: clientName,
+                toolId: toolId,
+                img: img,
+                toolName: toolName,
+                quantity: quantity,
+                phone: phone,
+                location: location,
+                paid: true,
+                approved: false,
+                t_id: paymentIntent.id
+            }
+
+            fetch(`http://localhost:5000/updatepayment/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(updatedPurchase)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    navigate('/dashboard/myorders');
+
+                })
+
+
+
         }
     }
     return (
@@ -97,7 +132,10 @@ const CheckoutForm = ({ order }) => {
                 carderror && <p className='text-primary'>{carderror}</p>
             }
             {
-                success && <p className='text-green-500'>{success}</p>
+                success && <div className='text-green-500'>
+                    <p >{success}</p>
+                    <p>Your transaction ID: <span className='text-primary'>{transactionId}</span> </p>
+                </div>
             }
         </>
     );

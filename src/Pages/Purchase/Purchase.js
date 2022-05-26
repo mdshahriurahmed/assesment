@@ -38,6 +38,8 @@ const Purchase = () => {
         const quantity = event.target.quantity.value;
         const location = event.target.location.value;
         const paid = false;
+        const approved = false;
+        const t_id = null;
         const cost = quantity * price;
 
         if (quantity > available_quantity) {
@@ -59,7 +61,9 @@ const Purchase = () => {
             clientEmail: userEmail,
             phone: phone,
             location: location,
-            paid: paid
+            paid: paid,
+            approved: approved,
+            t_id: t_id
 
         }
 
