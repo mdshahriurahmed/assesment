@@ -28,8 +28,10 @@ const Navbar = () => {
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/blogs'>Blogs</Link></li>
         <li><Link to='/tools'>Tools</Link></li>
+        <li><Link to='/blogs'>Blogs</Link></li>
+        <li><Link to='/myportfolio'>My Portfolio</Link></li>
+
         {
             user && <li><Link to='/dashboard'>Dashboard</Link></li>
         }
