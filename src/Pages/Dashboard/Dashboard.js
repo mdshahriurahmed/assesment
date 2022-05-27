@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { faUserCircle, faCartArrowDown, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faCartArrowDown, faStar, faUserGear, faCartFlatbed, faCartPlus, faListCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 import useProfile from '../Hooks/useProfile';
+import useAdmin from '../Hooks/useAdmin';
 
 const Dashboard = () => {
 
@@ -17,7 +18,7 @@ const Dashboard = () => {
     }
 
 
-    const [img, role] = useProfile(user);
+    const [admin] = useAdmin(user);
 
 
 
@@ -41,13 +42,22 @@ const Dashboard = () => {
                     <li className='text-xl font-medium'><Link to='/dashboard'><FontAwesomeIcon icon={faUserCircle} /> My Profile</Link></li>
 
                     {
-                        role !== 'admin' && <li className='text-xl font-medium'><Link to='/dashboard/myorders'><FontAwesomeIcon icon={faCartArrowDown} /> My Orders</Link></li>
+                        !admin && <li className='text-xl font-medium'><Link to='/dashboard/myorders'><FontAwesomeIcon icon={faCartArrowDown} /> My Orders</Link></li>
                     }
                     {
-                        role !== 'admin' && <li className='text-xl font-medium'><Link to='/dashboard/addreview'><FontAwesomeIcon icon={faStar} /> Add Review</Link></li>
+                        !admin && <li className='text-xl font-medium'><Link to='/dashboard/addreview'><FontAwesomeIcon icon={faStar} /> Add Review</Link></li>
                     }
                     {
-                        role === 'admin' && <li className='text-xl font-medium'><Link to='/dashboard/makeadmin'><FontAwesomeIcon icon={faStar} /> Make Admin</Link></li>
+                        admin && <li className='text-xl font-medium'><Link to='/dashboard/makeadmin'><FontAwesomeIcon icon={faUserGear} /> Make Admin</Link></li>
+                    }
+                    {
+                        admin && <li className='text-xl font-medium'><Link to='/dashboard/manageallorders'><FontAwesomeIcon icon={faCartFlatbed} /> Manage All Orders</Link></li>
+                    }
+                    {
+                        admin && <li className='text-xl font-medium'><Link to='/dashboard/addproduct'><FontAwesomeIcon icon={faCartPlus} /> Add A Product</Link></li>
+                    }
+                    {
+                        admin && <li className='text-xl font-medium'><Link to='/dashboard/manageproduct'><FontAwesomeIcon icon={faListCheck} /> Manage Products</Link></li>
                     }
 
                 </ul>

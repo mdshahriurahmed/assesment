@@ -58,7 +58,7 @@ const MyOrders = () => {
                                         <>
                                             {
                                                 order.approved ?
-                                                    <h1 className='text-success'> Approved</h1>
+                                                    <h1 className='text-success'> Shipped</h1>
                                                     :
                                                     <h1 className='text-primary'> Pending..</h1>
                                             }

@@ -8,7 +8,7 @@ import useAdmin from '../Hooks/useAdmin';
 import Loading from '../Loading/Loading';
 
 
-const RequireAdmin = ({ children }) => {
+const RequireUser = ({ children }) => {
     const [user, loading] = useAuthState(auth);
     const location = useLocation();
     const [admin, adminLoading] = useAdmin(user);
@@ -17,12 +17,17 @@ const RequireAdmin = ({ children }) => {
         return <Loading></Loading>
     }
 
-    if (!user || !admin) {
+    if (user && !admin) {
+        console.log(admin);
+        return children;
+
+    }
+    else {
         signOut(auth);
         localStorage.removeItem('accessToken');
         return <Navigate to="/login" state={{ from: location }} replace></Navigate>
     }
-    return children;
+
 };
 
-export default RequireAdmin;
+export default RequireUser;

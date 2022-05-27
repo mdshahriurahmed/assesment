@@ -4,7 +4,7 @@ import Loading from '../Loading/Loading';
 import UserRow from './UserRow';
 
 const MakeAdmin = () => {
-    const { data: users, isLoading } = useQuery('users', () => fetch('http://localhost:5000/allusers', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/allusers', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -32,7 +32,8 @@ const MakeAdmin = () => {
                         {
                             users.map(user => <UserRow key={user._id}
                                 user={user}
-                                index={users.indexOf(user) + 1}></UserRow>)
+                                index={users.indexOf(user) + 1}
+                                refetch={refetch}></UserRow>)
                         }
 
 

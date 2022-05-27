@@ -11,6 +11,7 @@ const useProfile = user => {
         fetch(`http://localhost:5000/myprofile?userEmail=${email}`, {
             method: 'GET',
             headers: {
+
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
