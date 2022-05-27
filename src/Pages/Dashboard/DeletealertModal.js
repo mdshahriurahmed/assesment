@@ -9,7 +9,7 @@ const DeletealertModal = ({ proceed, refetch, }) => {
 
 
         //delete
-        fetch(`http://localhost:5000/mytools/${_id}`, {
+        fetch(`https://fierce-dawn-28408.herokuapp.com/mytools/${_id}`, {
             method: 'DELETE',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`

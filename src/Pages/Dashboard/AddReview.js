@@ -30,7 +30,7 @@ const AddReview = () => {
             rating: rating,
             comment: comment
         }
-        fetch('http://localhost:5000/rating', {
+        fetch('https://fierce-dawn-28408.herokuapp.com/rating', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

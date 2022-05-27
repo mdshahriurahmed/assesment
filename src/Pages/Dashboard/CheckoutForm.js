@@ -15,7 +15,7 @@ const CheckoutForm = ({ order }) => {
         img, toolName, quantity, phone, location, paid, approved } = order;
     const price = totalCost;
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://fierce-dawn-28408.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -88,7 +88,7 @@ const CheckoutForm = ({ order }) => {
                 t_id: paymentIntent.id
             }
 
-            fetch(`http://localhost:5000/updatepayment/${id}`, {
+            fetch(`https://fierce-dawn-28408.herokuapp.com/updatepayment/${id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

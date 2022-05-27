@@ -41,7 +41,7 @@ const AddProduct = () => {
                         description: data.description
 
                     }
-                    fetch('http://localhost:5000/latesttool', {
+                    fetch('https://fierce-dawn-28408.herokuapp.com/latesttool', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

@@ -15,7 +15,7 @@ const MyProfile = () => {
 
 
 
-    const { data: myprofile, isLoading, refetch } = useQuery('myprofile', () => fetch(`http://localhost:5000/myprofile?userEmail=${email}`, {
+    const { data: myprofile, isLoading, refetch } = useQuery('myprofile', () => fetch(`https://fierce-dawn-28408.herokuapp.com/myprofile?userEmail=${email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -43,7 +43,7 @@ const MyProfile = () => {
 
         }
 
-        fetch(`http://localhost:5000/user/${email}`, {
+        fetch(`https://fierce-dawn-28408.herokuapp.com/user/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

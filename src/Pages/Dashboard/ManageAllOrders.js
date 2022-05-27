@@ -9,7 +9,7 @@ import ShippmentModal from './ShippmentModal';
 const ManageAllOrders = () => {
     const [order, setOrder] = useState('');
     const [sorder, setSOrder] = useState('');
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:5000/allorders`, {
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`https://fierce-dawn-28408.herokuapp.com/allorders`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

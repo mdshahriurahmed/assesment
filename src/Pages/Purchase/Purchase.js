@@ -11,7 +11,7 @@ const Purchase = () => {
     const { id } = useParams();
     const [tool, setTool] = useState({});
     useEffect(() => {
-        const url = `http://localhost:5000/purchase/${id}`;
+        const url = `https://fierce-dawn-28408.herokuapp.com/purchase/${id}`;
         fetch(url, {
             method: 'GET',
             headers: {
@@ -67,7 +67,7 @@ const Purchase = () => {
 
         }
 
-        fetch('http://localhost:5000/purchasing', {
+        fetch('https://fierce-dawn-28408.herokuapp.com/purchasing', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -89,7 +89,7 @@ const Purchase = () => {
                     description: description
                 };
 
-                fetch(`http://localhost:5000/newtool/${id}`, {
+                fetch(`https://fierce-dawn-28408.herokuapp.com/newtool/${id}`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'

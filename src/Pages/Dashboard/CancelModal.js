@@ -9,7 +9,7 @@ const CancelModal = ({ order, refetch, isLoading }) => {
     console.log(order);
     const handleDelete = _id => {
 
-        const url = `http://localhost:5000/myorder2/${_id}`;
+        const url = `https://fierce-dawn-28408.herokuapp.com/myorder2/${_id}`;
         const pid = _id;
         fetch(url, {
             method: 'GET',
@@ -27,7 +27,7 @@ const CancelModal = ({ order, refetch, isLoading }) => {
 
 
                 //--------
-                const url1 = `http://localhost:5000/purchase/${data.toolId}`;
+                const url1 = `https://fierce-dawn-28408.herokuapp.com/purchase/${data.toolId}`;
 
                 fetch(url1, {
                     method: 'GET',
@@ -51,7 +51,7 @@ const CancelModal = ({ order, refetch, isLoading }) => {
                             description: data.description
                         };
 
-                        fetch(`http://localhost:5000/newtool/${tid}`, {
+                        fetch(`https://fierce-dawn-28408.herokuapp.com/newtool/${tid}`, {
                             method: 'PUT',
                             headers: {
                                 'content-type': 'application/json'
@@ -61,7 +61,7 @@ const CancelModal = ({ order, refetch, isLoading }) => {
                             .then(res => res.json())
                             .then(data => {
                                 //delete
-                                fetch(`http://localhost:5000/myorder/${_id}`, {
+                                fetch(`https://fierce-dawn-28408.herokuapp.com/myorder/${_id}`, {
                                     method: 'DELETE',
                                     headers: {
                                         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
