@@ -2,6 +2,8 @@
 
 Live Site Link: https://bd-tools-20f34.firebaseapp.com/
 
+server Side github link: https://github.com/programming-hero-web-course1/manufacturer-website-server-side-shahriurahmed
+
 * This is a reactjs application.
 * used daisy ui to design the theme.
 * used firebase authentication.

@@ -76,7 +76,7 @@ const MyPortfolio = () => {
                     <div className='mt-10 shadow-lg p-5'>
                         <h1 className='text-center text-3xl font-bold mb-5'>Project 1</h1>
                         <img className='mb-5 ' src={s3} alt="" />
-                        <div className='flex justify-center'><a className='px-8 bg-primary font-bold text-white  rounded-md py-2' href="https://fruitflowers.netlify.app/" target='_blank' rel='noreferrer'>Live Site</a></div>
+                        <div className='flex justify-center'><a className='px-8 bg-primary font-bold text-white  rounded-md py-2' href="https://bd-tools-20f34.firebaseapp.com/" target='_blank' rel='noreferrer'>Live Site</a></div>
                     </div>
 
                 </div>
