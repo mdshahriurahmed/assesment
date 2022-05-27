@@ -2,8 +2,25 @@ import React from 'react';
 
 const Blogs = () => {
     return (
-        <div className='h-screen'>
-            <h1>Blogs</h1>
+        <div className='px-20'>
+            <h1 className='text-5xl text-center my-8 text-white'>Blogs</h1>
+            <div>
+                <h3 className='text-2xl text-primary'>How will you improve the performance of a React Application?</h3>
+                <p className='text-white text-justify mb-5'>To improve React Application performance we have to follow some key techniques. We have to keep the component state local where necessary. Insted of using any sizes image we can optimize image manually then we will use it in our application. Instead of using static code we can use dynamic code. It will make the site faster. We can use react hooks and can use prebuild librarires insterad of writing all codes. it will also keep the application faster. Also Memoizing React components to prevent unnecessary re-renders is a good step to kepp the site faster. </p>
+                <h3 className='text-2xl text-primary'>What are the different ways to manage a state in a React application?</h3>
+                <p className='text-white text-justify mb-5'> There are four main types of state that we need to manage in our react application. The states are Local state, Global State, Server State, URL state. Local state is mostly managed in React using the useState hook. Data that we handle across several components is referred to as global state. Authenticated user state is a common example of global state. It is important to obtain and alter a user's data throughout our program if the user is logged in. Data from an external server that has to be combined with our current UI state. Server state is a basic idea, but it can be difficult to manage alongside all of our other UI data, both local and global. Data found on our URLs, such as pathnames and query parameters. The URL state is generally overlooked as a state category, yet it is an important one.
+                </p>
+                <h3 className='text-2xl text-primary'>How does prototypical inheritance work?</h3>
+                <p className='text-white text-justify mb-5'>Every object has an internal and hidden property called [[Prototype]] that is present in all of its methods and properties. Prototypal Inheritance is a javascript feature that allows you to add methods and properties to objects. It's a method that allows one object to inherit the properties and methods of another. We use Object.getPrototypeOf and Object.setPrototypeOf to get and set the [[Prototype]] of an object, respectively. It is now set using __proto__ in current programming languages.</p>
+                <h3 className='text-2xl text-primary'>Why you do not set the state directly in React. For example, if you have const [products, setProducts] = useState([]). Why you do not set products = [...] instead, you use the setProducts</h3>
+                <p className='text-white text-justify mb-5'> We do not set the state in react app directly because if i update it directly, calling the setState() afterward may just replace the update i made.When i directly update the state, it does not change this.state immediately. Instead, it creates a pending state transition, and accessing it after calling this method will only return the present value. I will lose control of the state across all components. ANd it will not change the data dynamically. <br />
+                </p>
+                <h3 className='text-2xl text-primary'>You have an array of products. Each product has a name, price, description, etc. How will you implement a search to find products by name?</h3>
+                <p className='text-white text-justify mb-5'>At first i will use an input field as search box. When user will type the name and hit the search button the name will set in a state variable. then i will filter the array by the searched name and i will keep the data in a temporary array that matches with the name and after that i will set the temporary array data to UI. if temporary array is empty then it will show no data found. </p>
+                <h3 className='text-2xl text-primary'>What is a unit test? Why should write unit tests?</h3>
+                <p className='text-white text-justify mb-5'>A unit test is a method of testing a unit, which is the smallest amount of code in a system that can be logically separated. That is a function, a subroutine, a method, or a property in most programming languages. It's crucial to focus on the solitary component of the term. When tests rely on external systems, according to author Michael Feathers' book "Working Effectively with Legacy Code," they are not unit tests: "It can't be performed at the same time as any other test if it communicates with the database, communicates with the network, communicates with the file system, requires system configuration, or it can't be done at the same time as any other test. Unit testing is now available in frameworks like JUnit and testing tools like TestComplete. If you go a bit deeper, you'll find SUnit, Kent Beck's mother of all unit testing frameworks, and a reference in Chapter 5 of The Art of Software Testing. It's basically a mystery before then. I questioned Jerry Weinberg about his unit testing experiences — "In 1956, we began unit testing. It was always done, as far as I knew, as long as there were computers "..</p>
+            </div>
+
         </div>
     );
 };
