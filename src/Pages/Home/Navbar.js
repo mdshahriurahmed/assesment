@@ -23,7 +23,7 @@ const Navbar = () => {
     }
 
 
-    const [img] = useProfile(user);
+    const [img, role] = useProfile(user);
 
 
     const menuItems = <>
