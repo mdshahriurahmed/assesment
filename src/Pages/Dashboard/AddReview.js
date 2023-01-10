@@ -30,7 +30,7 @@ const AddReview = () => {
             rating: rating,
             comment: comment
         }
-        fetch('https://fierce-dawn-28408.herokuapp.com/rating', {
+        fetch('https://bd-tools-server-side.vercel.app/rating', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

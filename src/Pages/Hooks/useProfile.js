@@ -8,7 +8,7 @@ const useProfile = user => {
     useEffect(() => {
 
         const email = user?.email;
-        fetch(`https://fierce-dawn-28408.herokuapp.com/myprofile?userEmail=${email}`, {
+        fetch(`https://bd-tools-server-side.vercel.app/myprofile?userEmail=${email}`, {
             method: 'GET',
             headers: {
 

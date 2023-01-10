@@ -21,7 +21,7 @@ const ShippmentModal = ({ sorder, refetch, isLoading }) => {
             approved: true,
             t_id: t_id
         }
-        fetch(`https://fierce-dawn-28408.herokuapp.com/updatepayment/${_id}`, {
+        fetch(`https://bd-tools-server-side.vercel.app/updatepayment/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

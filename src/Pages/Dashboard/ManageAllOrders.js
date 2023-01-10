@@ -9,7 +9,7 @@ import ShippmentModal from './ShippmentModal';
 const ManageAllOrders = () => {
     const [order, setOrder] = useState('');
     const [sorder, setSOrder] = useState('');
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`https://fierce-dawn-28408.herokuapp.com/allorders`, {
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`https://bd-tools-server-side.vercel.app/allorders`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

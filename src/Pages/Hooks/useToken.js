@@ -16,7 +16,7 @@ const useToken = user => {
 
         };
         if (email) {
-            fetch(`https://fierce-dawn-28408.herokuapp.com/user/${email}`, {
+            fetch(`https://bd-tools-server-side.vercel.app/user/${email}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

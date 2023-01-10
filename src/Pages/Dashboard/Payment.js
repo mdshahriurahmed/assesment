@@ -10,7 +10,7 @@ const stripePromise = loadStripe('pk_test_51L3YPGJ3uHlZ3XtGsQZiyC1qoMD5wnyFiIX1i
 
 const Payment = () => {
     const { id } = useParams();
-    const url = `https://fierce-dawn-28408.herokuapp.com/myorders/${id}`;
+    const url = `https://bd-tools-server-side.vercel.app/myorders/${id}`;
 
     const { data: order, isLoading } = useQuery(['order', id], () => fetch(url, {
         method: 'GET',

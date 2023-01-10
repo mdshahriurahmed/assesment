@@ -10,7 +10,7 @@ import DeletealertModal from './DeletealertModal';
 const ManageProduct = () => {
 
     const [proceed, setProceed] = useState('');
-    const { data: tools, isLoading, refetch } = useQuery('tools', () => fetch(`https://fierce-dawn-28408.herokuapp.com/tools`, {
+    const { data: tools, isLoading, refetch } = useQuery('tools', () => fetch(`https://bd-tools-server-side.vercel.app/tools`, {
         method: 'GET'
     }).then(res => res.json()))
 

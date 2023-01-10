@@ -9,7 +9,7 @@ const CancelModal = ({ order, refetch, isLoading }) => {
     console.log(order);
     const handleDelete = _id => {
 
-        const url = `https://fierce-dawn-28408.herokuapp.com/myorder2/${_id}`;
+        const url = `https://bd-tools-server-side.vercel.app/myorder2/${_id}`;
         const pid = _id;
         fetch(url, {
             method: 'GET',
@@ -27,7 +27,7 @@ const CancelModal = ({ order, refetch, isLoading }) => {
 
 
                 //--------
-                const url1 = `https://fierce-dawn-28408.herokuapp.com/purchase/${data.toolId}`;
+                const url1 = `https://bd-tools-server-side.vercel.app/purchase/${data.toolId}`;
 
                 fetch(url1, {
                     method: 'GET',
@@ -51,7 +51,7 @@ const CancelModal = ({ order, refetch, isLoading }) => {
                             description: data.description
                         };
 
-                        fetch(`https://fierce-dawn-28408.herokuapp.com/newtool/${tid}`, {
+                        fetch(`https://bd-tools-server-side.vercel.app/newtool/${tid}`, {
                             method: 'PUT',
                             headers: {
                                 'content-type': 'application/json'
@@ -61,7 +61,7 @@ const CancelModal = ({ order, refetch, isLoading }) => {
                             .then(res => res.json())
                             .then(data => {
                                 //delete
-                                fetch(`https://fierce-dawn-28408.herokuapp.com/myorder/${_id}`, {
+                                fetch(`https://bd-tools-server-side.vercel.app/myorder/${_id}`, {
                                     method: 'DELETE',
                                     headers: {
                                         'authorization': `Bearer ${localStorage.getItem('accessToken')}`

@@ -15,7 +15,7 @@ const MyProfile = () => {
 
 
 
-    const { data: myprofile, isLoading, refetch } = useQuery('myprofile', () => fetch(`https://fierce-dawn-28408.herokuapp.com/myprofile?userEmail=${email}`, {
+    const { data: myprofile, isLoading, refetch } = useQuery('myprofile', () => fetch(`https://bd-tools-server-side.vercel.app/myprofile?userEmail=${email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -43,7 +43,7 @@ const MyProfile = () => {
 
         }
 
-        fetch(`https://fierce-dawn-28408.herokuapp.com/user/${email}`, {
+        fetch(`https://bd-tools-server-side.vercel.app/user/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

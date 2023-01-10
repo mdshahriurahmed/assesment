@@ -4,7 +4,7 @@ import Loading from '../Loading/Loading';
 import ShowReview from './ShowReview';
 
 const Reviews = () => {
-    const { data: reviews, isLoading, refetch } = useQuery('reviews', () => fetch('https://fierce-dawn-28408.herokuapp.com/reviews', {
+    const { data: reviews, isLoading, refetch } = useQuery('reviews', () => fetch('https://bd-tools-server-side.vercel.app/reviews', {
         method: 'GET',
 
     }).then(res => res.json()))

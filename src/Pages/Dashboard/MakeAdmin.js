@@ -4,7 +4,7 @@ import Loading from '../Loading/Loading';
 import UserRow from './UserRow';
 
 const MakeAdmin = () => {
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://fierce-dawn-28408.herokuapp.com/allusers', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://bd-tools-server-side.vercel.app/allusers', {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

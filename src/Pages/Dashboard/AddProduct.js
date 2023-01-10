@@ -41,7 +41,7 @@ const AddProduct = () => {
                         description: data.description
 
                     }
-                    fetch('https://fierce-dawn-28408.herokuapp.com/latesttool', {
+                    fetch('https://bd-tools-server-side.vercel.app/latesttool', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

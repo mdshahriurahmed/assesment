@@ -9,7 +9,7 @@ import CancelModal from './CancelModal';
 const MyOrders = () => {
     const [user] = useAuthState(auth);
     const [order, setOrder] = useState('');
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`https://fierce-dawn-28408.herokuapp.com/myorders?userEmail=${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`https://bd-tools-server-side.vercel.app/myorders?userEmail=${user.email}`, {
         method: 'GET',
         headers: {
             'authorization': `Bearer ${localStorage.getItem('accessToken')}`

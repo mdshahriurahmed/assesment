@@ -11,7 +11,7 @@ const Purchase = () => {
     const { id } = useParams();
     const [tool, setTool] = useState({});
     useEffect(() => {
-        const url = `https://fierce-dawn-28408.herokuapp.com/purchase/${id}`;
+        const url = `https://bd-tools-server-side.vercel.app/purchase/${id}`;
         fetch(url, {
             method: 'GET',
             headers: {
@@ -67,7 +67,7 @@ const Purchase = () => {
 
         }
 
-        fetch('https://fierce-dawn-28408.herokuapp.com/purchasing', {
+        fetch('https://bd-tools-server-side.vercel.app/purchasing', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -89,7 +89,7 @@ const Purchase = () => {
                     description: description
                 };
 
-                fetch(`https://fierce-dawn-28408.herokuapp.com/newtool/${id}`, {
+                fetch(`https://bd-tools-server-side.vercel.app/newtool/${id}`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'
