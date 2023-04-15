@@ -37,16 +37,15 @@ const Login = () => {
 
     let signInError;
     const navigate = useNavigate();
-    const location = useLocation();
-    let from = location.state?.from?.pathname || "/";
+
 
 
     useEffect(() => {
         if (token) {
-            navigate(from, { replace: true });
+            navigate('/dashboard');
 
         }
-    }, [user, gUser, from, navigate, token])
+    }, [user, gUser, navigate, token])
 
 
     if (error || gerror) {

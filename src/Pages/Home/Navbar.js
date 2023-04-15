@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 import photo from '../../Assets/default img.png'
-import { useQuery } from 'react-query';
 import useProfile from '../Hooks/useProfile';
 
 
@@ -27,11 +26,6 @@ const Navbar = () => {
 
 
     const menuItems = <>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/tools'>Tools</Link></li>
-        <li><Link to='/blogs'>Blogs</Link></li>
-        <li><Link to='/myportfolio'>My Portfolio</Link></li>
-
         {
             user && <li><Link to='/dashboard'>Dashboard</Link></li>
         }
@@ -62,7 +56,7 @@ const Navbar = () => {
     </>
 
     return (
-        <div class="navbar bg-primary text-white flex justify-between lg:justify-between ">
+        <div class="navbar bg-primary text-white flex justify-end  ">
 
             <div class="dropdown">
                 <label tabindex="0" class="btn btn-ghost lg:hidden">
